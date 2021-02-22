@@ -1,14 +1,16 @@
 
 # Common Tools
-sudo yum -y groupinstall "Development Tools"
+sudo apt update
+sudo apt-get install build-essential curl file git
 
 # User Brew
-local home=/home/linuxbrew/
-git clone https://github.com/Homebrew/brew $home/.linuxbrew/Homebrew
-mkdir $home/.linuxbrew/bin
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-ln -s ../Homebrew/bin/brew $home/.linuxbrew/bin
-eval $($home/.linuxbrew/bin/brew shellenv)
+cat /dev/stdin ~/.profile <<EOI
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+EOI
+
+. ./.profile
 
 # Other
 brew install terraform
